@@ -1,0 +1,14 @@
+{
+  "name": "b4e1e09feef9417b",
+  "main": "b4e1e09feef9417b@392.js",
+  "version": "392.0.0",
+  "homepage": "https://observablehq.com/d/b4e1e09feef9417b",
+  "author": {
+    "name": "Elvis Chukwuani's Workspace",
+    "url": "https://observablehq.com/@elvis-chukwuani-ws"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4 - 5"
+  }
+}
