@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pie chart (D3.js)</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato|Oswald" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <style>
+        /* Add CSS to style the table */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+        }
+        body {
+           
+            background-color: bisque;
+            
+            /* background-color: bisque; */
+
+        }
+    </style>
+
+    </style>
+
+    
+
+</head>
+
+<body>
+    <div class="container" style="margin: 5px;">
+        <a href="index.html" class="btn btn-dark active" role="button">Back</a>
+        <div class="title-holder">
+            
+            <h1 class="title" style="text-align: center;">Keyword Search</h1>
+            <h3 class="subtitle" style="text-align: center;">Please make a a country selection to see detailed information</h3>
+        </div>
+                
+        <div class="country-selection">
+            <label for="country-select">Select a country:</label>
+            <select id="country-select">
+                <option value="Argentina">Argentina</option>
+                <option value="Bolivia">Bolivia</option>
+                <option value="Brazil">Brazil</option>
+                <option value="Chile">Chile</option>
+                <option value="Columbia">Columbia</option>
+                <option value="Ecuador">Ecuador</option>
+                <option value="Elsalvador">Elsalvador</option>
+                <option value="Panama">Panama</option>
+                <option value="Paraguay">Paraguay</option>
+                <option value="Peru">Peru</option>
+                <option value="Uruguay">Uruguay</option>
+                <option value="Venezuela">Venezuela</option>
+        
+                <!-- Add more countries as needed -->
+            </select>
+            <!-- <button id="load-country-data">Load Data</button> -->
+        </div>
+        <br>
+        <div id="chart"></div>
+        
+        <input type="text" id="search-input" placeholder="Enter a keyword">
+        <button id="search-button" class="btn btn-primary">Search</button>
+        
+        <br>
+        <br>
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Year</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be dynamically populated here -->
+            </tbody>
+        </table>
+        
+        <footer>
+        
+        </footer>
+        <!-- partial -->
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.min.js'></script>
+        <script src="./Argentina.js"></script>
+        <script>
+            document.getElementById('search-button').addEventListener('click', function () {
+                const keyword = document.getElementById('search-input').value.toLowerCase();
+                const selectedCountry = document.getElementById('country-select').value;
+                const dataUrl = `${selectedCountry}.json`;
+                const tableBody = document.querySelector('#data-table tbody');
+                tableBody.innerHTML = '';
+
+
+                fetch(dataUrl) // Change 'data.json' to the path of your JSON file
+                    .then(response => response.json())
+                    .then(data => {
+                        data.EcuadorData.forEach(item => {
+                            if (item.category.toLowerCase().includes(keyword)) {
+                                const row = document.createElement('tr');
+                                row.innerHTML = `
+                      <td>${item.category}</td>
+                      <td>${item.description}</td>
+                      <td>${item.year}</td>
+                      <td>${item.data || ''}</td>
+                    `;
+                                tableBody.appendChild(row);
+                            }
+                        });
+                    })
+                    .catch(error => console.error('Error fetching data: ', error));
+            });
+        </script>
+    </div>
+    
+</body>
+
+</html>
