@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.6.0/d3.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <style>
+        * {
+            font-family: Lato;
+        }
+
+        body {
+            background-color: rgb(230, 214, 194);
+        }
+
+        .axis-x path {
+            stroke: #000;
+        }
+
+        .line {
+            fill: none;
+            stroke-width: 1.5px;
+            stroke-linejoin: "round";
+            stroke-linecap: "round";
+        }
+
+        .line:hover {
+            stroke-width: 2px;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #headline {
+            min-width: 100%;
+        }
+
+        #menu {
+            display: inline;
+            width: 100%;
+            /* border:1px solid black; */
+            /* padding: 1%; */
+        }
+
+        #nation {
+            display: inline;
+            padding-left: 1%;
+        }
+
+        span {
+            color: rgb(25, 159, 139)
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-secondary bg-dark">
+        <a class="navbar-brand" href="#" style="color: aliceblue; padding: 15px;">Soil & Water Analysis</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html" style="color: aliceblue;">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="map.html" style="color: aliceblue;">GEO Map</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" style="color: aliceblue;">
+                        Soil Data
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#" style="color: rgb(0, 0, 0);">Line Graph</a>
+                        <a class="dropdown-item" href="" style="color: rgb(1, 1, 1);">Sectional Line Graph</a>
+                        <a class="dropdown-item" href="#" style="color: rgb(0, 0, 0);">Parralel Cordinates</a>
+                        <a class="dropdown-item" href="#" style="color: rgb(0, 0, 0);">Seasonal Charts</a>
+                        <a class="dropdown-item" href="#" style="color: rgb(6, 7, 7);">Bar Charts</a>
+                        <a class="dropdown-item" href="#" style="color: rgb(8, 8, 8);">Contour Map</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" style="color: aliceblue;">
+                        Water Data
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="lineGraphWater.html" style="color: rgb(0, 0, 0);">Line Graph</a>
+                        <a class="dropdown-item" href="secLineTN.html" style="color: rgb(1, 1, 1);">Sectional Line
+                            Graph</a>
+                        <a class="dropdown-item" href="#" style="color: rgb(0, 0, 0);">Parralel Cordinates</a>
+                        <a class="dropdown-item" href="#" style="color: rgb(0, 0, 0);">Seasonal Charts</a>
+                        <a class="dropdown-item" href="#" style="color: rgb(6, 7, 7);">Bar Charts</a>
+                        <a class="dropdown-item" href="#" style="color: rgb(8, 8, 8);">Contour Map</a>
+                    </div>
+                </li>
+    
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html" style="color: aliceblue;">About</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <div class="input-group">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                        style="margin-left: 500px;">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                            style="margin-left: 30px;">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <div>
+    <!-- <p class="h2"
+        style="margin-left: 50px; margin-top: 10px; color:rgb(60, 11, 98); font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+        CS6260 TERM PROJECT FALL 2023</p>
+    <div id="container"> -->
+
+        <p class="h4"
+            style="margin-left: 50px; margin-top: 10px; color:rgb(39, 10, 10); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            Click to Select Chemical Variables Samples Collected Within A Period.</p>
+
+        <br>         
+        <div id="menu" style="margin-left: 100px;"></div>
+
+        <div class="graph" style="margin-left: 50px;">
+            <svg width="1400" height="600"></svg>
+        </div>
+
+    </div>
+    </div>
+
+
+    <script>
+        // here is the code explained: https://gist.github.com/sjengle/478b85594bb048574826be43f7eeac9b
+
+
+
+
+        //define chart margins
+        let svg = d3.select("svg"),
+            margin = {
+                top: 30,
+                right: 80,
+                bottom: 40,
+                left: 50
+            },
+            width = svg.attr("width") - margin.left - margin.right,
+            height = svg.attr("height") - margin.top - margin.bottom,
+            g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        //define time format
+        var parseTime = d3.timeParse("%Y");
+
+
+        //define scales
+        let x = d3.scaleTime().range([0, width]),
+            y = d3.scaleLinear().range([height, 0]),
+            //color scale
+            z = d3.scaleOrdinal(d3.schemeCategory20);
+
+        //define line generator
+        let line = d3.line()
+            .curve(d3.curveBasis)
+            .x(function (d) {
+                return x(d.Year);
+            })
+            .y(function (d) {
+                return y(d.expenditure);
+            });
+
+        //load data
+        data = d3.csv("test33444.csv", type, function (error, data) {
+            if (error) throw error;
+            var countries = data.columns.slice(1).map(function (id) {
+                return {
+                    id: id,
+                    values: data.map(function (d) {
+                        return {
+                            Year: d.Year,
+                            expenditure: d[id]
+
+                        };
+
+
+                    })
+                };
+            });
+
+            //
+
+            //define x axis
+            x.domain(d3.extent(data, function (d) {
+                return d.Year;
+            }));
+            //define y axis
+            y.domain([
+                d3.min(countries, function (c) {
+                    return d3.min(c.values, function (d) {
+                        return d.expenditure;
+                    });
+                }),
+                d3.max(countries, function (c) {
+                    return d3.max(c.values, function (d) {
+                        return d.expenditure;
+                    });
+                })
+            ]);
+
+            //define color scale
+            z.domain(countries.map(function (c) {
+                return c.id;
+            }));
+
+            //append x axis
+            g.append("g")
+                .attr("class", "axis axis-x")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x))
+                .append("text")
+                // .attr("transform", "rotate(-90)")
+                .attr("y", 20)
+                .attr("x", 700)
+                .attr("dy", "2.0em")
+                .attr("fill", "#000")
+                .text("Year")
+                .append("text")
+                // .attr("transform", "rotate(-90)")
+                .attr("y", 20)
+                .attr("x", 310)
+                .attr("dy", "0.9em")
+                .attr("fill", "#000")
+                .text("Source:Sipri");
+
+            //append y axis
+            g.append("g")
+                .attr("class", "axis axis-y")
+                .call(d3.axisLeft(y))
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", -50)
+                .attr("x", -125)
+                .attr("dy", "0.9em")
+                .attr("fill", "#000")
+                .text("Chemical     Properties");
+
+            //append country data to svg
+            let country = g.selectAll(".country")
+                .data(countries)
+                .enter()
+                .append("g")
+                .attr("class", "country")
+            // 	d3.selectAll(".myCheckbox").on("change",update);
+            // update();
+
+            // append country path to svg
+            country.append("path")
+                .attr("class", "line")
+                .attr('id', function (d) { return 'line-' + d.id })
+                .attr("d", function (d) { return line(d.values); })
+                .style("stroke", function (d) { return z(d.id); })
+                .attr("opacity", 0);
+
+
+
+            var longY = function (d) { return d.value.Year.length };
+            var longE = function (d) { return d.value.Year.length };
+            // append country labels to svg
+            country.append("text")
+                .datum(function (d) { return { id: d.id, value: d.values[d.values.length - 1] }; })
+                .attr("transform", function (d) { return "translate(" + x(d.value.Year) + "," + y(d.value.expenditure) + ")"; })
+                .attr("x", 3)
+                .attr('id', function (d) { return 'text-' + d.id })
+                .attr("dy", "0.35em")
+                .style("font", "11px sans-serif")
+                .attr("opacity", 0)
+                .text(function (d) { return d.id; });
+
+            for (let i = 0; i < countries.length; i++) {
+                var tick = document.createElement('input');
+                tick.type = 'checkbox';
+                tick.id = 'myCheckbox';
+                tick.name = countries[i].id;
+                tick.value = countries[i].id;
+
+                var label = document.createElement('label');
+                label.for = countries[i].id
+                label.appendChild(document.createTextNode(countries[i].id));
+                var divcheck = document.createElement('div');
+                divcheck.id = "nation";
+                // tick.appendChild(document.createTextNode(countries[i].id));
+                divcheck.appendChild(tick);
+                divcheck.appendChild(label);
+                document.getElementById("menu").appendChild(divcheck);
+
+                tick.addEventListener("click", function () {
+
+                    var lineSelected = this.value;
+                    var svgline = d3.select('#line-' + lineSelected);
+                    var textline = d3.select('#text-' + lineSelected);
+                    console.log(svgline);
+                    console.log(textline);
+
+                    if (svgline.attr('opacity') === '0') {
+                        // console.log('making it visible');
+                        svgline.attr('opacity', 1);
+                    } else {
+                        svgline.attr('opacity', 0);
+                    }
+
+                    if (textline.attr('opacity') === '0') {
+                        // console.log('making it visible');
+                        textline.attr('opacity', 1);
+                    } else {
+                        textline.attr('opacity', 0);
+                    }
+                    this.style.background = '#555';
+                    this.style.color = 'white';
+
+                });
+            }
+
+
+        });
+
+        //bind with multiseries data
+        function type(d, _, columns) {
+            d.Year = parseTime(d.Year);
+            //iterate through each column
+            for (var i = 1, n = columns.length, c; i < n; ++i) d[c = columns[i]] = +d[c];
+
+            //bind column data to year
+            return d;
+        }
+
+    </script>
+</body>
+
+</html>

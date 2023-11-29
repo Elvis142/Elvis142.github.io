@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: rgb(230, 214, 194);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-secondary bg-dark">
+        <a class="navbar-brand" href="#" style="color: aliceblue; padding: 15px;">Soil & Water Analysis</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html" style="color: aliceblue;">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="map.html" style="color: aliceblue;">GEO Map</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: aliceblue;">
+                        Soil Data
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#" style="color: rgb(0, 0, 0);">Line Graph</a>
+                        <a class="dropdown-item" href="" style="color: rgb(1, 1, 1);">Sectional Line Graph</a>
+                        <a class="dropdown-item" href="#" style="color: rgb(0, 0, 0);">Parralel Cordinates</a>
+                        <a class="dropdown-item" href="#" style="color: rgb(0, 0, 0);">Seasonal Charts</a>
+                        <a class="dropdown-item" href="#" style="color: rgb(6, 7, 7);">Bar Charts</a>
+                        <a class="dropdown-item" href="#" style="color: rgb(8, 8, 8);">Contour Map</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: aliceblue;">
+                        Water Data
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="lineGraphWater.html" style="color: rgb(0, 0, 0);">Line Graph</a>
+                        <a class="dropdown-item" href="sectionLineWater.html" style="color: rgb(1, 1, 1);">Sectional
+                            Line Graph</a>
+                        <a class="dropdown-item" href="#" style="color: rgb(0, 0, 0);">Parralel Cordinates</a>
+                        <a class="dropdown-item" href="#" style="color: rgb(0, 0, 0);">Seasonal Charts</a>
+                        <a class="dropdown-item" href="#" style="color: rgb(6, 7, 7);">Bar Charts</a>
+                        <a class="dropdown-item" href="#" style="color: rgb(8, 8, 8);">Contour Map</a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html" style="color: aliceblue;">About</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <div class="input-group">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                        style="margin-left: 500px;">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                            style="margin-left: 30px;">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </nav>
+    <div>
+        <a class="btn btn-primary" href="#" role="button" style="margin-top: 25px; margin-left: 150px;">TN</a>
+        <a class="btn btn-warning" href="#" role="button" style="margin-top: 25px; margin-left: 40px;">TP</a>
+        <a class="btn btn-dark" href="#" role="button" style="margin-top: 25px; margin-left: 40px;">DISNO3</a>
+        <a class="btn btn-success" href="#" role="button" style="margin-top: 25px; margin-left: 40px;">DISNO4</a>
+        <a class="btn btn-danger" href="#" role="button" style="margin-top: 25px; margin-left: 40px;">DISNH4</a>
+        <a class="btn btn-secondary" href="#" role="button" style="margin-top: 25px; margin-left: 40px;">TDN</a>
+        <a class="btn btn-outline-dark" href="#" role="button" style="margin-top: 25px; margin-left: 40px;">TDP</a>
+    </div>
+
+    <div class="card border-dark border-round-5 border border-5"
+        style="height: 60px; width: 20rem; margin-left: 300px; margin-top: 30px; background-color: lightblue;">
+        <div class="card-body"
+            style="font-weight: bolder; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center;">
+            ANALYSIS OF TOTAL NITROGEN</div>
+    </div>
+
+    <!-- Create a div where the graph will take place -->
+    <div id="my_dataviz"></div>
+    <script>
+
+        // set the dimensions and margins of the graph
+        var margin = { top: 10, right: 30, bottom: 30, left: 60 },
+            width = 1300 - margin.left - margin.right,
+            height = 600 - margin.top - margin.bottom;
+
+        // append the svg object to the body of the page
+        var svg = d3.select("#my_dataviz")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");
+
+        //Read the data
+        d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",
+
+            // When reading the csv, I must format variables:
+            function (d) {
+                return { date: d3.timeParse("%Y-%m-%d")(d.date), value: d.value }
+            },
+
+            // Now I can use this dataset:
+            function (data) {
+
+                // Add X axis --> it is a date format
+                var x = d3.scaleTime()
+                    .domain(d3.extent(data, function (d) { return d.date; }))
+                    .range([0, width]);
+                xAxis = svg.append("g")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(d3.axisBottom(x));
+
+                // Add Y axis
+                var y = d3.scaleLinear()
+                    .domain([0, d3.max(data, function (d) { return +d.value; })])
+                    .range([height, 0]);
+                yAxis = svg.append("g")
+                    .call(d3.axisLeft(y));
+
+                // Add a clipPath: everything out of this area won't be drawn.
+                var clip = svg.append("defs").append("svg:clipPath")
+                    .attr("id", "clip")
+                    .append("svg:rect")
+                    .attr("width", width)
+                    .attr("height", height)
+                    .attr("x", 0)
+                    .attr("y", 0);
+
+                // Add brushing
+                var brush = d3.brushX()                   // Add the brush feature using the d3.brush function
+                    .extent([[0, 0], [width, height]])  // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
+                    .on("end", updateChart)               // Each time the brush selection changes, trigger the 'updateChart' function
+
+                // Create the line variable: where both the line and the brush take place
+                var line = svg.append('g')
+                    .attr("clip-path", "url(#clip)")
+
+                // Add the line
+                line.append("path")
+                    .datum(data)
+                    .attr("class", "line")  // I add the class line to be able to modify this line later on.
+                    .attr("fill", "none")
+                    .attr("stroke", "steelblue")
+                    .attr("stroke-width", 1.5)
+                    .attr("d", d3.line()
+                        .x(function (d) { return x(d.date) })
+                        .y(function (d) { return y(d.value) })
+                    )
+
+                // Add the brushing
+                line
+                    .append("g")
+                    .attr("class", "brush")
+                    .call(brush);
+
+                // A function that set idleTimeOut to null
+                var idleTimeout
+                function idled() { idleTimeout = null; }
+
+                // A function that update the chart for given boundaries
+                function updateChart() {
+
+                    // What are the selected boundaries?
+                    extent = d3.event.selection
+
+                    // If no selection, back to initial coordinate. Otherwise, update X axis domain
+                    if (!extent) {
+                        if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
+                        x.domain([4, 8])
+                    } else {
+                        x.domain([x.invert(extent[0]), x.invert(extent[1])])
+                        line.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
+                    }
+
+                    // Update axis and line position
+                    xAxis.transition().duration(1000).call(d3.axisBottom(x))
+                    line
+                        .select('.line')
+                        .transition()
+                        .duration(1000)
+                        .attr("d", d3.line()
+                            .x(function (d) { return x(d.date) })
+                            .y(function (d) { return y(d.value) })
+                        )
+                }
+
+                // If user double click, reinitialize the chart
+                svg.on("dblclick", function () {
+                    x.domain(d3.extent(data, function (d) { return d.date; }))
+                    xAxis.transition().call(d3.axisBottom(x))
+                    line
+                        .select('.line')
+                        .transition()
+                        .attr("d", d3.line()
+                            .x(function (d) { return x(d.date) })
+                            .y(function (d) { return y(d.value) })
+                        )
+                });
+
+            })
+
+    </script>
+</body>
+
+</html>
