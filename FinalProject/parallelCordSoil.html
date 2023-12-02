@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: rgb(230, 214, 194);
+        }
+
+        svg {
+            font: 10px sans-serif;
+        }
+
+        .background path {
+            fill: none;
+            stroke: #ccc;
+            stroke-opacity: .4;
+            shape-rendering: crispEdges;
+        }
+
+        .foreground path {
+            fill: none;
+            stroke: steelblue;
+            stroke-opacity: .7;
+        }
+
+        .brush .extent {
+            fill-opacity: .3;
+            stroke: #fff;
+            shape-rendering: crispEdges;
+        }
+
+        .axis line,
+        .axis path {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+
+        .axis text {
+            text-shadow: 0 1px 0 #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-secondary bg-dark">
+        <a class="navbar-brand" href="#" style="color: aliceblue; padding: 15px;">Soil & Water Analysis</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" style="color: aliceblue;">
+                        Soil Data
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="soilmap.html" style="color: rgb(0, 0, 0);">Soil Data Map</a>
+                        <a class="dropdown-item" href="lineGraphSoil.html" style="color: rgb(0, 0, 0);">Line Graph</a>
+                        <a class="dropdown-item" href="barChartSoilTp.html" style="color: rgb(0, 0, 0);">Seasonal Charts</a>
+                        <a class="dropdown-item" href="parallelCordSoil.html" style="color: rgb(0, 0, 0);">Parralel
+                            Cordinates</a>
+    
+    
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" style="color: aliceblue;">
+                        Water Data
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="watermap.html" style="color: rgb(0, 0, 0);">Water Data Map</a>
+                        <a class="dropdown-item" href="lineGraphWater.html" style="color: rgb(0, 0, 0);">Line Graph</a>
+                        <a class="dropdown-item" href="barChartWaterTP.html" style="color: rgb(0, 0, 0);">Seasonal
+                            Charts</a>
+                        <a class="dropdown-item" href="parallelCord.html" style="color: rgb(0, 0, 0);">Parralel
+                            Cordinates</a>
+    
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <p class="h3" style="font-family: Impact; margin-left: 20px; margin-top: 10px;">Soil Data Analysis</p>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    <script>
+
+        var m = [30, 10, 10, 10],
+            w = 1400 - m[1] - m[3],
+            h = 700 - m[0] - m[2];
+
+        var x = d3.scale.ordinal().rangePoints([0, w], .5),
+            y = {};
+
+        var line = d3.svg.line(),
+            axis = d3.svg.axis().orient("left"),
+            background,
+            foreground;
+
+        var svg = d3.select("body").append("svg")
+            .attr("width", w + m[1] + m[3])
+            .attr("height", h + m[0] + m[2])
+            .append("g")
+            .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
+
+        d3.csv("cost-of-living.csv", function (error, cities) {
+            if (error) throw error;
+
+            // Extract the list of dimensions and create a scale for each.
+            x.domain(dimensions = d3.keys(cities[0]).filter(function (d) {
+                return d != "City" && (y[d] = d3.scale.linear()
+                    .domain(d3.extent(cities, function (p) { return +p[d]; }))
+                    .range([h, 0]));
+            }));
+
+            // Add grey background lines for context.
+            background = svg.append("g")
+                .attr("class", "background")
+                .selectAll("path")
+                .data(cities)
+                .enter().append("path")
+                .attr("d", path);
+
+            // Add blue foreground lines for focus.
+            foreground = svg.append("g")
+                .attr("class", "foreground")
+                .selectAll("path")
+                .data(cities)
+                .enter().append("path")
+                .attr("d", path);
+
+            // Add a group element for each dimension.
+            var g = svg.selectAll(".dimension")
+                .data(dimensions)
+                .enter().append("g")
+                .attr("class", "dimension")
+                .attr("transform", function (d) { return "translate(" + x(d) + ")"; });
+
+            // Add an axis and title.
+            g.append("g")
+                .attr("class", "axis")
+                .each(function (d) { d3.select(this).call(axis.scale(y[d])); })
+                .append("text")
+                .attr("text-anchor", "middle")
+                .attr("y", -9)
+                .text(String);
+
+            // Add and store a brush for each axis.
+            g.append("g")
+                .attr("class", "brush")
+                .each(function (d) { d3.select(this).call(y[d].brush = d3.svg.brush().y(y[d]).on("brush", brush)); })
+                .selectAll("rect")
+                .attr("x", -8)
+                .attr("width", 16);
+        });
+
+        // Returns the path for a given data point.
+        function path(d) {
+            return line(dimensions.map(function (p) { return [x(p), y[p](d[p])]; }));
+        }
+
+        // Handles a brush event, toggling the display of foreground lines.
+        function brush() {
+            var actives = dimensions.filter(function (p) { return !y[p].brush.empty(); }),
+                extents = actives.map(function (p) { return y[p].brush.extent(); });
+            foreground.style("display", function (d) {
+                return actives.every(function (p, i) {
+                    return extents[i][0] <= d[p] && d[p] <= extents[i][1];
+                }) ? null : "none";
+            });
+        }
+
+    </script>

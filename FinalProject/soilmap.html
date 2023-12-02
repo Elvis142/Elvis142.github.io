@@ -24,6 +24,9 @@
 
 
     <style>
+        body{
+            background-color: rgb(151, 136, 116);
+        }
         .test {
             margin: 0;
             padding: 0;
@@ -41,7 +44,7 @@
 
         #map {
             flex: 1;
-            height: 800px; /* Set the map container size */
+            height: 500px; /* Set the map container size */
         }
 
         .dropdown-btn {
@@ -87,10 +90,6 @@
     
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="home.html" style="color: aliceblue;">Home</a>
-                </li>
-    
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false" style="color: aliceblue;">
@@ -98,12 +97,12 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="soilmap.html" style="color: rgb(0, 0, 0);">Soil Data Map</a>
-                        <a class="dropdown-item" href="#" style="color: rgb(0, 0, 0);">Line Graph</a>
-                        <a class="dropdown-item" href="" style="color: rgb(1, 1, 1);">Sectional Line Graph</a>
-                        <a class="dropdown-item" href="#" style="color: rgb(0, 0, 0);">Parralel Cordinates</a>
-                        <a class="dropdown-item" href="#" style="color: rgb(0, 0, 0);">Seasonal Charts</a>
-                        <a class="dropdown-item" href="#" style="color: rgb(6, 7, 7);">Bar Charts</a>
-                        <a class="dropdown-item" href="#" style="color: rgb(8, 8, 8);">Contour Map</a>
+                        <a class="dropdown-item" href="lineGraphSoil.html" style="color: rgb(0, 0, 0);">Line Graph</a>
+                        <a class="dropdown-item" href="barChartSoilTp.html" style="color: rgb(0, 0, 0);">Seasonal Charts</a>
+                        <a class="dropdown-item" href="parallelCordSoil.html" style="color: rgb(0, 0, 0);">Parralel
+                            Cordinates</a>
+    
+    
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -114,31 +113,41 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="watermap.html" style="color: rgb(0, 0, 0);">Water Data Map</a>
                         <a class="dropdown-item" href="lineGraphWater.html" style="color: rgb(0, 0, 0);">Line Graph</a>
-                        <a class="dropdown-item" href="secLineTN.html" style="color: rgb(1, 1, 1);">Sectional Line Graph</a>
+                        <a class="dropdown-item" href="barChartWaterTP.html" style="color: rgb(0, 0, 0);">Seasonal
+                            Charts</a>
                         <a class="dropdown-item" href="parallelCord.html" style="color: rgb(0, 0, 0);">Parralel
                             Cordinates</a>
-                        <a class="dropdown-item" href="#" style="color: rgb(0, 0, 0);">Seasonal Charts</a>
-                        <a class="dropdown-item" href="#" style="color: rgb(6, 7, 7);">Bar Charts</a>
-                        <a class="dropdown-item" href="#" style="color: rgb(8, 8, 8);">Contour Map</a>
-                    </div>
-                </li>
     
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html" style="color: aliceblue;">About</a>
+                    </div>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <div class="input-group">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-                        style="margin-left: 500px;">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
-                            style="margin-left: 30px;">Search</button>
-                    </div>
-                </div>
-            </form>
         </div>
     </nav>
+    <div class="card" style="width: 94rem; margin-bottom: 5px;">
+        <div class="card-body" style="background-color: antiquewhite;">
+            <h5 class="card-title-primary" style="color: rgb(4, 4, 87); font-style: italic; font-weight: bold;">Overview
+            </h5>
+            <p class="card-text" style="text-align: justify; font-family: Verdana, Geneva, Tahoma, sans-serif;">This
+                visualization tool helps in the analysis and exploration of chemical components collected on soil and water
+                samples
+                over a thirty month period. Data used is related to different wetland pools, focusing on both water and soil
+                characteristics.This aims to help the user gain a comprehensive understanding of the environmental
+                conditions within the
+                wetland areas.</p>
+            <p class="card-text"
+                style="text-align: justify; font-family: Verdana, Geneva, Tahoma, sans-serif; color: rgb(4, 4, 87); font-weight: bold; font-style: italic;">
+                Tool Guide</p>
+            <p class="card-text" style="text-align: justify; font-family:Lucida Sans">
+                The home page which is the current page has a geographical map displaying information for soil wetland and
+                calculated
+                mean for each chemical variable. A soil data dropdown is located on the navigation bar which gives you the
+                opportunity
+                to utilize various tools.
+            </p>
+    
+    
+        </div>
+    </div>
     <div class="test">
         <!-- Sidebar -->
         <div id="sidebar" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">

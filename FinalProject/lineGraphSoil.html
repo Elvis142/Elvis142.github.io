@@ -113,23 +113,23 @@
             </ul>
         </div>
     </nav>
-    
-    
-        <!-- <p class="h5"
+
+
+    <!-- <p class="h5"
             style="margin-left: 50px; margin-top: 5px; color:rgb(39, 10, 10); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
             Click to Select Chemical Variables Samples Collected Within A Period.</p> -->
-            <div class="row align-items-start">
-                <div class="col">
-                    <p class="h3" style="font-family: Impact; margin-left: 20px; margin-top: 10px;">Water Data Analysis</p>
-                    <div id="menu" style="margin-left: 10px;"></div>
-                    <div class="graph" style="margin-left: 20px;">
-                        <svg width="1000" height="420"></svg>
-                    </div>
-                </div>                    
+    <div class="row align-items-start">
+        <div class="col">
+            <p class="h3" style="font-family: Impact; margin-left: 20px; margin-top: 10px;">Soil Data Analysis</p>
+            <div id="menu" style="margin-left: 10px;"></div>
+            <div class="graph" style="margin-left: 20px;">
+                <svg width="1000" height="420"></svg>
             </div>
-        <div>
-            
         </div>
+    </div>
+    <div>
+
+    </div>
     </div>
     </div>
 
@@ -173,7 +173,7 @@
             });
 
         //load data
-        data = d3.csv("fuzbuzz.csv", type, function (error, data) {
+        data = d3.csv("soilLineData.csv", type, function (error, data) {
             if (error) throw error;
             var countries = data.columns.slice(1).map(function (id) {
                 return {
@@ -341,22 +341,24 @@
 
 </html>
 <html>
-    <div class="col">
-        <select id="locationDropdown" class="form-select"
-            style="background-color: burlywood; border-radius: 10px; margin-left: 10px;" aria-label="Location Dropdown">
-            <!-- Your options here -->
-        </select>
-        <select id="variableDropdown" class="form-select" style="background-color: burlywood; border-radius: 10px;"
-            aria-label="Variable Dropdown">
-            <!-- Your options here -->
-        </select>
-        <br> <br>
-        <div class="card" style="width: 60rem; margin-left: 10px; background-color: blanchedalmond; border-color: rgb(79, 79, 82);">
-            <div id="plotArea"></div>
-            <div class="tooltip"></div>
-            <script src="https://d3js.org/d3.v6.min.js"></script>
-            <script src="script.js"></script>
-        </div>
-    
+<div class="col">
+    <select id="locationDropdown" class="form-select"
+        style="background-color: rgb(210, 203, 194); border-radius: 10px; margin-left: 10px;" aria-label="Location Dropdown">
+        <!-- Your options here -->
+    </select>
+    <select id="variableDropdown" class="form-select" style="background-color: burlywood; border-radius: 10px;"
+        aria-label="Variable Dropdown">
+        <!-- Your options here -->
+    </select>
+    <br> <br>
+    <div class="card"
+        style="width: 60rem; margin-left: 10px; background-color: blanchedalmond; border-color: rgb(79, 79, 82);">
+        <div id="plotArea"></div>
+        <div class="tooltip"></div>
+        <script src="https://d3js.org/d3.v6.min.js"></script>
+        <script src="soilScript.js"></script>
     </div>
+
+</div>
+
 </html>
