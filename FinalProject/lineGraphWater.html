@@ -135,12 +135,7 @@
 
 
     <script>
-        // here is the code explained: https://gist.github.com/sjengle/478b85594bb048574826be43f7eeac9b
-
-
-
-
-        //define chart margins
+           //define chart margins
         let svg = d3.select("svg"),
             margin = {
                 top: 10,
@@ -226,6 +221,7 @@
                 .attr("x", 450)
                 .attr("dy", "2.0em")
                 .attr("fill", "#000")
+                .style("font-size", "10px") 
                 .text("Year")
                 .append("text")
                 // .attr("transform", "rotate(-90)")
@@ -233,6 +229,7 @@
                 .attr("x", 310)
                 .attr("dy", "0.9em")
                 .attr("fill", "#000")
+                .style("font-size", "10px") 
                 .text("Source:Sipri");
 
             //append y axis
@@ -245,6 +242,7 @@
                 .attr("x", -125)
                 .attr("dy", "0.9em")
                 .attr("fill", "#000")
+                .style("font-size", "16px") 
                 .text("Chemical     Properties");
 
             //append country data to svg
@@ -262,6 +260,7 @@
                 .attr('id', function (d) { return 'line-' + d.id })
                 .attr("d", function (d) { return line(d.values); })
                 .style("stroke", function (d) { return z(d.id); })
+                .style("stroke-width", 5)
                 .attr("opacity", 0);
 
 

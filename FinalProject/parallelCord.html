@@ -35,7 +35,7 @@
   
     .foreground path {
       fill: none;
-      stroke: steelblue;
+      stroke: rgb(32, 110, 114);
       stroke-opacity: .7;
     }
   
@@ -95,13 +95,13 @@
               Charts</a>
             <a class="dropdown-item" href="parallelCord.html" style="color: rgb(0, 0, 0);">Parralel
               Cordinates</a>
-  
           </div>
         </li>
       </ul>
     </div>
   </nav>
   <p class="h3" style="font-family: Impact; margin-left: 20px; margin-top: 10px;">Water Data Analysis</p>
+  <br> <br> 
   <script src="//d3js.org/d3.v3.min.js"></script>
   <script>
 
@@ -123,7 +123,7 @@
       .append("g")
       .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
 
-    d3.csv("cost-of-living.csv", function (error, cities) {
+    d3.csv("parrallelcordWA.csv", function (error, cities) {
       if (error) throw error;
 
       // Extract the list of dimensions and create a scale for each.
@@ -163,6 +163,7 @@
         .append("text")
         .attr("text-anchor", "middle")
         .attr("y", -9)
+        .style("font-size", "30px") 
         .text(String);
 
       // Add and store a brush for each axis.

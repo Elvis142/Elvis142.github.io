@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaflet Map</title>
+    <title>Soil Map</title>
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://d3js.org/d3.v5.min.js"></script>
@@ -28,8 +28,7 @@
             background-color: rgb(151, 136, 116);
         }
         .test {
-            margin: 0;
-            padding: 0;
+            
             display: flex;
         }
 
@@ -44,7 +43,7 @@
 
         #map {
             flex: 1;
-            height: 500px; /* Set the map container size */
+            height: 480px; /* Set the map container size */
         }
 
         .dropdown-btn {
@@ -82,85 +81,85 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-secondary bg-dark">
-        <a class="navbar-brand" href="#" style="color: aliceblue; padding: 15px;">Soil & Water Analysis</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    
+        <a class="navbar-brand" href="#" style="color: aliceblue; padding: 15px;">Soil & Water Analysis</a>    
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" style="color: aliceblue;">
-                        Soil Data
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="soilmap.html" style="color: rgb(0, 0, 0);">Soil Data Map</a>
-                        <a class="dropdown-item" href="lineGraphSoil.html" style="color: rgb(0, 0, 0);">Line Graph</a>
-                        <a class="dropdown-item" href="barChartSoilTp.html" style="color: rgb(0, 0, 0);">Seasonal Charts</a>
-                        <a class="dropdown-item" href="parallelCordSoil.html" style="color: rgb(0, 0, 0);">Parralel
-                            Cordinates</a>
-    
-    
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" style="color: aliceblue;">
-                        Water Data
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="watermap.html" style="color: rgb(0, 0, 0);">Water Data Map</a>
-                        <a class="dropdown-item" href="lineGraphWater.html" style="color: rgb(0, 0, 0);">Line Graph</a>
-                        <a class="dropdown-item" href="barChartWaterTP.html" style="color: rgb(0, 0, 0);">Seasonal
-                            Charts</a>
-                        <a class="dropdown-item" href="parallelCord.html" style="color: rgb(0, 0, 0);">Parralel
-                            Cordinates</a>
-    
-                    </div>
-                </li>
-            </ul>
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" style="color: aliceblue;">
+                            Soil Data
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="soilmap.html" style="color: rgb(0, 0, 0);">Soil Data Map</a>
+                            <a class="dropdown-item" href="lineGraphSoil.html" style="color: rgb(0, 0, 0);">Line Graph</a>
+                            <a class="dropdown-item" href="barChartSoilTp.html" style="color: rgb(0, 0, 0);">Seasonal Charts</a>
+                            <a class="dropdown-item" href="parallelCordSoil.html" style="color: rgb(0, 0, 0);">Parralel
+                                Cordinates</a>
+        
+        
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" style="color: aliceblue;">
+                            Water Data
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="watermap.html" style="color: rgb(0, 0, 0);">Water Data Map</a>
+                            <a class="dropdown-item" href="lineGraphWater.html" style="color: rgb(0, 0, 0);">Line Graph</a>
+                            <a class="dropdown-item" href="barChartWaterTP.html" style="color: rgb(0, 0, 0);">Seasonal
+                                Charts</a>
+                            <a class="dropdown-item" href="parallelCord.html" style="color: rgb(0, 0, 0);">Parralel
+                                Cordinates</a>
+        
+                        </div>
+                    </li>
+                </ul>
         </div>
     </nav>
-    <div class="card" style="width: 100%; margin-bottom: 5px;">
-        <div class="card-body" style="background-color: antiquewhite;">
-            <h5 class="card-title-primary" style="color: rgb(4, 4, 87); font-style: italic; font-weight: bold;">Overview
-            </h5>
-            <p class="card-text" style="text-align: justify; font-family: Verdana, Geneva, Tahoma, sans-serif;">This
-                visualization tool helps in the analysis and exploration of chemical components collected on soil and water
-                samples
-                over a thirty month period. Data used is related to different wetland pools, focusing on both water and soil
-                characteristics.This aims to help the user gain a comprehensive understanding of the environmental
-                conditions within the
-                wetland areas.</p>
-            <p class="card-text"
-                style="text-align: justify; font-family: Verdana, Geneva, Tahoma, sans-serif; color: rgb(4, 4, 87); font-weight: bold; font-style: italic;">
-                Tool Guide</p>
-            <p class="card-text" style="text-align: justify; font-family:Lucida Sans">
-                The home page which is the current page has a geographical map displaying information for soil wetland and
-                calculated
-                mean for each chemical variable. A soil data dropdown is located on the navigation bar which gives you the
-                opportunity
-                to utilize various tools.
-            </p>
-    
-    
+        <div class="card" style="width: 100%; margin-bottom: 10px;">
+            <div class="card-body" style="background-color: antiquewhite;">
+                <h5 class="card-title-primary" style="color: rgb(4, 4, 87); font-style: italic; font-weight: bold;">Overview
+                </h5>
+                <p class="card-text" style="text-align: justify; font-family: Verdana, Geneva, Tahoma, sans-serif;">This
+                    visualization tool helps in the analysis and exploration of chemical components collected on soil and water
+                    samples
+                    over a thirty month period. Data used is related to different wetland pools, focusing on both water and soil
+                    characteristics.This aims to help the user gain a comprehensive understanding of the environmental
+                    conditions within the
+                    wetland areas.</p>
+                <p class="card-text"
+                    style="text-align: justify; font-family: Verdana, Geneva, Tahoma, sans-serif; color: rgb(4, 4, 87); font-weight: bold; font-style: italic;">
+                    Tool Guide</p>
+                <p class="card-text" style="text-align: justify; font-family:Lucida Sans">
+                    The home page which is the current page has a geographical map displaying information for soil wetland and
+                    calculated
+                    mean for each chemical variable. A soil data dropdown is located on the navigation bar which gives you the
+                    opportunity
+                    to utilize various tools.
+                </p>
+            </div>
         </div>
-    </div>
-    <div class="test">
-        <!-- Sidebar -->
-        <div id="sidebar" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
-            <h3>Soil Wetland Content</h3>
-            <!-- Dropdown button -->
-            <button class="dropdown-btn">Choose Wetlands Number</button>
-            <!-- Dropdown content -->
-            <div class="dropdown-content"></div>
-        </div>
+        <div class="test">
+            <!-- Sidebar -->
+            <div id="sidebar" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                <h3>Soil Wetland Content</h3>
+                <!-- Dropdown button -->
+                <button class="dropdown-btn">Choose Wetlands Number</button>
+                <!-- Dropdown content -->
+                <div class="dropdown-content"></div>
+            </div>
         
-        <!-- Map container -->
-        <div id="map"></div>
+            <!-- Map container -->
+            <div id="map"></div>
+        </div>
     </div>
+    
     
 
     <!-- Leaflet JavaScript -->
